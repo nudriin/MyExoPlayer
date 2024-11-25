@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.nudriin.myexoplayer"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.nudriin.myexoplayer"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -26,6 +26,11 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -45,4 +50,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.media3.ui)
+    implementation(libs.media3.session)
 }
