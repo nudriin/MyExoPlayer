@@ -2,14 +2,10 @@ package com.nudriin.myexoplayer
 
 import android.content.ComponentName
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.media3.common.MediaItem
-import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.common.util.concurrent.MoreExecutors
@@ -28,10 +24,11 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val sessionToken = SessionToken(this, ComponentName(this, PlayBackService::class.java))
-        val controllerFeature = MediaController.Builder(this, sessionToken).buildAsync()
-        controllerFeature.addListener({
-            binding.playerView.player = controllerFeature.get()
-        }, MoreExecutors.directExecutor())
+        val controllerFuture = MediaController.Builder(this, sessionToken).buildAsync()
+        controllerFuture.addListener(
+            { binding.playerView.player = controllerFuture.get() },
+            MoreExecutors.directExecutor()
+        )
     }
 
     private fun hideSystemUI() {

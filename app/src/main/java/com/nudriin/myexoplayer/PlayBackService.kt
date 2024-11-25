@@ -1,8 +1,5 @@
 package com.nudriin.myexoplayer
 
-import android.app.Service
-import android.content.Intent
-import android.os.IBinder
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.exoplayer.ExoPlayer
@@ -20,6 +17,7 @@ class PlayBackService : MediaSessionService() {
 
 
     private fun initializeSessionAndPlayer() {
+
         val videoItem = MediaItem.Builder()
             .setUri("https://github.com/dicodingacademy/assets/releases/download/release-video/VideoDicoding.mp4")
             .setMediaMetadata(
